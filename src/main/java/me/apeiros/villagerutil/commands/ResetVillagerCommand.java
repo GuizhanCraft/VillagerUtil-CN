@@ -1,18 +1,15 @@
 package me.apeiros.villagerutil.commands;
 
-import java.util.regex.Pattern;
-
-import org.jetbrains.annotations.NotNull;
-
+import io.github.thebusybiscuit.slimefun4.libraries.dough.common.ChatColors;
+import me.apeiros.villagerutil.VillagerUtil;
+import me.apeiros.villagerutil.items.wands.TradeWand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import io.github.thebusybiscuit.slimefun4.libraries.dough.common.ChatColors;
-
-import me.apeiros.villagerutil.VillagerUtil;
-import me.apeiros.villagerutil.items.wands.TradeWand;
+import javax.annotation.Nonnull;
+import java.util.regex.Pattern;
 
 public class ResetVillagerCommand implements CommandExecutor {
 
@@ -28,7 +25,7 @@ public class ResetVillagerCommand implements CommandExecutor {
     // Uses command number to check if command was run
     // using a Villager Trade Wand
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+    public boolean onCommand(@Nonnull CommandSender sender, @Nonnull Command command, @Nonnull String label, String[] args) {
         // Check if the sender is a player
         if (sender instanceof Player) {
             Player p = (Player) sender;
@@ -46,10 +43,10 @@ public class ResetVillagerCommand implements CommandExecutor {
                 // Reset villager's trades
                 TradeWand.resetLockedTrades(p);
             } else {
-                p.sendMessage(ChatColors.color("&cInvalid command!"));
+                p.sendMessage(ChatColors.color("&c无效指令!"));
             }
         } else {
-            sender.sendMessage(ChatColors.color("&cOnly players are able to execute this command!"));
+            sender.sendMessage(ChatColors.color("&c只有玩家可以执行该指令!"));
         }
 
         return true;

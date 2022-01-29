@@ -1,37 +1,50 @@
-# VillagerUtil
+# VillagerUtil - 村民工具
 
 ---
 
-**A small Slimefun4 addon that adds a few items that makes using Minecraft villagers easier**
+一个小型Slimefun附属插件，可以让你更方便地处理村民相关地事情。
 
-Requires Minecraft 1.18 and [Slimefun](https://github.com/Slimefun/Slimefun4)
+需要 Minecraft 1.18 以及 [Slimefun](https://slimefun.guizhanss.wiki/Installing-Slimefun)。
 
----
+## 下载
 
-### List of items:
+**自动更新**: 汉化版构建#15及以后版本包含*自动更新*功能，默认开启。
 
-**Villager Token**
+点击这里下载 VillagerUtil: [下载 VillagerUtil](https://builds.guizhanss.net/ybw0014/VillagerUtil-CN/master)
 
-A consumable that is used when using the various Villager Wands
+<p align="center">
+  <a href="https://github.com/ybw0014/VillagerUtil-CN/actions/workflows/maven.yml">
+    <img src="https://github.com/ybw0014/VillagerUtil-CN/actions/workflows/maven.yml/badge.svg" alt="Java CI"/>
+  </a>
+  <a href="https://builds.guizhanss.net/ybw0014/VillagerUtil-CN/master">
+    <img src="https://builds.guizhanss.net/f/ybw0014/VillagerUtil-CN/master/badge.svg" alt="Build status"/>
+  </a>
+</p>
 
-**Villager Cure Wand**
+## 内容
 
-A tool that cures zombie villagers
+**村民令牌**
 
-**Villager De-nitwit-ifier**
+使用各种村民工具时需要消耗的物品
 
-A tool that allows nitwit-type villagers to get jobs
+**村民治愈棒**
 
-**Villager Trade Wand**
+可以治愈僵尸村民的工具
 
-A tool that can cycle the trades of villagers
+**村民去盲棒**
 
-**Villager Transport Wand**
+可以让傻子村民变成正常村民的工具
 
-A tool that lets you move villagers easily
+**村民交易棒**
 
-**Villager Transport Charm**
+可以重置村民交易的工具
 
-An item given to you by the Villager Transport wand which is associated with a villager
+**村民传送棒**
 
-Right click on the ground somewhere with the Transport Charm to teleport the villager there
+可以将村民传送到指定位置的工具
+
+**村民信标**
+
+使用村民传送棒时获得的物品，与一名村民绑定
+右键点击任意方块来将绑定的村民传送到方块上
+

@@ -1,7 +1,20 @@
 package me.apeiros.villagerutil.items.wands;
 
-import java.lang.ref.WeakReference;
-
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.handlers.EntityInteractHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.common.ChatColors;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
+import me.apeiros.villagerutil.Setup;
+import me.apeiros.villagerutil.VillagerUtil;
+import me.apeiros.villagerutil.util.Utils;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ClickEvent.Action;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -14,23 +27,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.TextComponent;
-import net.md_5.bungee.api.chat.ClickEvent.Action;
-
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.core.handlers.EntityInteractHandler;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.common.ChatColors;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
-
-import me.apeiros.villagerutil.Setup;
-import me.apeiros.villagerutil.VillagerUtil;
-import me.apeiros.villagerutil.util.Utils;
+import java.lang.ref.WeakReference;
 
 public class TradeWand extends SlimefunItem implements Listener {
 
@@ -51,7 +48,7 @@ public class TradeWand extends SlimefunItem implements Listener {
         return (e, i, offhand) -> {
             // Cancel event
             e.setCancelled(true);
-            
+
             // Check if the clicked entity is a villager
             Entity en = e.getRightClicked();
             if (en instanceof Villager) {
@@ -63,30 +60,30 @@ public class TradeWand extends SlimefunItem implements Listener {
 
                 // Check for permission
                 if (!Slimefun.getProtectionManager().hasPermission(p, p.getLocation(), Interaction.INTERACT_ENTITY)) {
-                    p.sendMessage(ChatColors.color("&cYou don't have permission!"));
+                    p.sendMessage(ChatColors.color("&c你没有权限!"));
                     v.shakeHead();
                     return;
                 }
 
                 // Check if the villager has no job or is a nitwit
                 if (prof == Profession.NONE || prof == Profession.NITWIT) {
-                    p.sendMessage(ChatColors.color("&cThis villager does not have a job!"));
+                    p.sendMessage(ChatColors.color("&c该村民还没有职业!"));
                     v.shakeHead();
                     return;
                 }
 
                 // Check for villager tokens
                 if (!Utils.hasToken(p, inv)) {
-                    p.sendMessage(ChatColors.color("&cInsufficient Villager Tokens!"));
+                    p.sendMessage(ChatColors.color("&c村民令牌不足!"));
                     v.shakeHead();
                     return;
                 }
-                
+
                 // Check if the villager's trades are locked
                 if (Utils.villagerTradesLocked(v)) {
                     // Reference the villager and its profession
                     villagerRef = new WeakReference<>(v);
-                    
+
                     // Ask user for confirmation to reset trades
                     sendWarning(p);
                 } else {
@@ -117,13 +114,13 @@ public class TradeWand extends SlimefunItem implements Listener {
     // Sends warning to players trying to reset a locked villager
     private void sendWarning(Player p) {
         // Send normal messages
-        p.sendMessage(ChatColors.color("&cThis villager has its trades locked."));
-        p.sendMessage(ChatColors.color("&cAre you sure you want to reset its trades?"));
+        p.sendMessage(ChatColors.color("&c该村民的交易已被锁定."));
+        p.sendMessage(ChatColors.color("&c你仍然要重置村民的交易么?"));
 
         // Create component
-        BaseComponent message = new TextComponent(ChatColors.color("&6Click here &7to reset this villager's trades"));
-        message.setClickEvent(new ClickEvent(Action.RUN_COMMAND, 
-                "/resetvillager " + VillagerUtil.getCommandNumber()));
+        BaseComponent message = new TextComponent(ChatColors.color("&6点击这里&7确认重置村民的交易"));
+        message.setClickEvent(new ClickEvent(Action.RUN_COMMAND,
+            "/resetvillager " + VillagerUtil.getCommandNumber()));
 
         // Send component
         p.spigot().sendMessage(message);
@@ -136,8 +133,8 @@ public class TradeWand extends SlimefunItem implements Listener {
 
         // Check if the villager exists
         if (v == null) {
-            p.sendMessage(ChatColors.color("&cConfirmation took too long!"));
-            p.sendMessage(ChatColors.color("&cRight click the villager again and click on the chat message."));
+            p.sendMessage(ChatColors.color("&c确认时间过长!"));
+            p.sendMessage(ChatColors.color("&c请重新操作。"));
         } else {
             // Store the profession and the player's inventory
             Inventory inv = p.getInventory();
@@ -148,21 +145,21 @@ public class TradeWand extends SlimefunItem implements Listener {
 
             // Check for permission
             if (!Slimefun.getProtectionManager().hasPermission(p, p.getLocation(), Interaction.INTERACT_ENTITY)) {
-                p.sendMessage(ChatColors.color("&cYou don't have permission!"));
+                p.sendMessage(ChatColors.color("&c你没有权限!"));
                 v.shakeHead();
                 return;
             }
 
             // Check if the villager has no job or is a nitwit
             if (prof == Profession.NONE || prof == Profession.NITWIT) {
-                p.sendMessage(ChatColors.color("&cThis villager does not have a job!"));
+                p.sendMessage(ChatColors.color("&c该村民还没有职业!"));
                 v.shakeHead();
                 return;
             }
 
             // Check for villager tokens
             if (!Utils.hasToken(p, inv)) {
-                p.sendMessage(ChatColors.color("&cInsufficient Villager Tokens!"));
+                p.sendMessage(ChatColors.color("&c村民令牌不足!"));
                 v.shakeHead();
                 return;
             }
@@ -186,5 +183,5 @@ public class TradeWand extends SlimefunItem implements Listener {
             villagerRef.clear();
         }
     }
-    
+
 }

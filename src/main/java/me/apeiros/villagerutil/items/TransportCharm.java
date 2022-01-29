@@ -1,8 +1,17 @@
 package me.apeiros.villagerutil.items;
 
-import java.util.Optional;
-import java.util.UUID;
-
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.common.ChatColors;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
+import me.apeiros.villagerutil.Setup;
+import me.apeiros.villagerutil.VillagerUtil;
+import me.apeiros.villagerutil.util.UUIDTagType;
+import me.apeiros.villagerutil.util.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
@@ -18,19 +27,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.common.ChatColors;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
-
-import me.apeiros.villagerutil.Setup;
-import me.apeiros.villagerutil.VillagerUtil;
-import me.apeiros.villagerutil.util.UUIDTagType;
-import me.apeiros.villagerutil.util.Utils;
+import java.util.Optional;
+import java.util.UUID;
 
 public class TransportCharm extends SlimefunItem {
 
@@ -39,12 +37,11 @@ public class TransportCharm extends SlimefunItem {
 
     // Custom Transport Wand recipe type
     private static final RecipeType transportWandRecipeType = new RecipeType(
-            Utils.key("transport_wand_recipe_type"), 
-            Setup.TRANSPORT_WAND,
-            "&7&oRight click a villager with a",
-            "&bVillager Transport Wand &7&oto",
-            "&7&orecieve a &bVillager Transport Charm",
-            "&7&olinked to that villager");
+        Utils.key("transport_wand_recipe_type"),
+        Setup.TRANSPORT_WAND,
+        "&7使用&b村民传送棒&7对任意村民右键点击",
+        "&7可以获得与该村民连接的&b村民信标"
+    );
 
     // Creates Villager Charm
     public TransportCharm(ItemGroup ig) {
@@ -82,7 +79,7 @@ public class TransportCharm extends SlimefunItem {
                     UUID id = pdc.get(key, new UUIDTagType());
 
                     if (id == null) {
-                        p.sendMessage(ChatColors.color("&cThere is no villager linked to this charm!"));
+                        p.sendMessage(ChatColors.color("&c该信标没有与任何村民连接!"));
 
                         // Refund token
                         refundToken(useTokens, inv, item);
@@ -109,7 +106,7 @@ public class TransportCharm extends SlimefunItem {
 
                     // Check if villager exists
                     if (v == null) {
-                        p.sendMessage(ChatColors.color("&cThe villager linked to this charm no longer exists!"));
+                        p.sendMessage(ChatColors.color("&c与该信标连接的村民已不存在!"));
 
                         // Refund token
                         refundToken(useTokens, inv, item);
@@ -153,5 +150,5 @@ public class TransportCharm extends SlimefunItem {
             inv.removeItem(new CustomItemStack(item, 1));
         }
     }
-    
+
 }

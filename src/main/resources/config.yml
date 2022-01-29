@@ -1,6 +1,6 @@
 options:
-  # Whether or not to automatically update VillagerUtil
+  # 启用自动更新
   auto-update: true
   
-  # Whether or not Villager Tokens should be consumed when a Villager Wand is used
+  # 使用村民魔法时是否消耗村民令牌
   use-tokens: true

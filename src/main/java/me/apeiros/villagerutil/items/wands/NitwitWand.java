@@ -1,5 +1,15 @@
 package me.apeiros.villagerutil.items.wands;
 
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.handlers.EntityInteractHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.common.ChatColors;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
+import me.apeiros.villagerutil.Setup;
+import me.apeiros.villagerutil.util.Utils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -11,18 +21,6 @@ import org.bukkit.entity.Villager;
 import org.bukkit.entity.Villager.Profession;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.core.handlers.EntityInteractHandler;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.common.ChatColors;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
-
-import me.apeiros.villagerutil.Setup;
-import me.apeiros.villagerutil.util.Utils;
 
 public class NitwitWand extends SlimefunItem {
 
@@ -40,7 +38,7 @@ public class NitwitWand extends SlimefunItem {
         return (e, i, offhand) -> {
             // Cancel event
             e.setCancelled(true);
-            
+
             // Check if the clicked entity is a villager
             Entity en = e.getRightClicked();
             if (en instanceof Villager) {
@@ -51,21 +49,21 @@ public class NitwitWand extends SlimefunItem {
 
                 // Check for permission
                 if (!Slimefun.getProtectionManager().hasPermission(p, p.getLocation(), Interaction.INTERACT_ENTITY)) {
-                    p.sendMessage(ChatColors.color("&cYou don't have permission!"));
+                    p.sendMessage(ChatColors.color("&c你没有权限!"));
                     v.shakeHead();
                     return;
                 }
 
                 // Check if villager is a nitwit
                 if (v.getProfession() != Profession.NITWIT) {
-                    p.sendMessage(ChatColors.color("&cThis villager is not a nitwit!"));
+                    p.sendMessage(ChatColors.color("&c该村民不是傻子!"));
                     v.shakeHead();
                     return;
                 }
 
                 // Check for villager tokens
                 if (!Utils.hasToken(p, inv)) {
-                    p.sendMessage(ChatColors.color("&cInsufficient Villager Tokens!"));
+                    p.sendMessage(ChatColors.color("&c村民令牌不足!"));
                     v.shakeHead();
                     return;
                 }
@@ -90,5 +88,5 @@ public class NitwitWand extends SlimefunItem {
     public void preRegister() {
         this.addItemHandler(getEntityInteractHandler());
     }
-    
+
 }

@@ -1,27 +1,29 @@
 package me.apeiros.villagerutil.util;
 
-import java.nio.ByteBuffer;
-import java.util.UUID;
-
-import org.jetbrains.annotations.NotNull;
-
 import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataType;
+
+import javax.annotation.Nonnull;
+import java.nio.ByteBuffer;
+import java.util.UUID;
 
 public class UUIDTagType implements PersistentDataType<byte[], UUID> {
 
     @Override
-    public @NotNull Class<byte[]> getPrimitiveType() {
+    public @Nonnull
+    Class<byte[]> getPrimitiveType() {
         return byte[].class;
     }
 
     @Override
-    public @NotNull Class<UUID> getComplexType() {
+    public @Nonnull
+    Class<UUID> getComplexType() {
         return UUID.class;
     }
 
     @Override
-    public byte @NotNull [] toPrimitive(UUID complex, @NotNull PersistentDataAdapterContext context) {
+    public @Nonnull
+    byte[] toPrimitive(UUID complex, @Nonnull PersistentDataAdapterContext context) {
         ByteBuffer bb = ByteBuffer.wrap(new byte[16]);
         bb.putLong(complex.getMostSignificantBits());
         bb.putLong(complex.getLeastSignificantBits());
@@ -29,7 +31,8 @@ public class UUIDTagType implements PersistentDataType<byte[], UUID> {
     }
 
     @Override
-    public @NotNull UUID fromPrimitive(byte @NotNull [] primitive, @NotNull PersistentDataAdapterContext context) {
+    public @Nonnull
+    UUID fromPrimitive(@Nonnull byte[] primitive, @Nonnull PersistentDataAdapterContext context) {
         ByteBuffer bb = ByteBuffer.wrap(primitive);
         long firstLong = bb.getLong();
         long secondLong = bb.getLong();

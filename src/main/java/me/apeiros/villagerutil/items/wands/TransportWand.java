@@ -1,7 +1,16 @@
 package me.apeiros.villagerutil.items.wands;
 
-import java.util.List;
-
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.handlers.EntityInteractHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.common.ChatColors;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
+import me.apeiros.villagerutil.Setup;
+import me.apeiros.villagerutil.util.UUIDTagType;
+import me.apeiros.villagerutil.util.Utils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -15,30 +24,19 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.core.handlers.EntityInteractHandler;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.common.ChatColors;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
-
-import me.apeiros.villagerutil.Setup;
-import me.apeiros.villagerutil.util.UUIDTagType;
-import me.apeiros.villagerutil.util.Utils;
+import java.util.List;
 
 public class TransportWand extends SlimefunItem {
 
     // Charm lore when there is a villager linked
     private final List<String> linkedVillagerLore = List.of(
-        ChatColors.color("&7A magical charm which will teleport"),
-        ChatColors.color("&7the associated villager to its location"),
-        ChatColors.color("&eRight Click &7to teleport the villager"),
+        ChatColors.color("&7一个魔法信标，可以将连接的村民"),
+        ChatColors.color("&7传动到当前位置"),
+        ChatColors.color("&e右键点击&7进行传送"),
         "",
-        ChatColors.color("&aVillager linked!"),
+        ChatColors.color("&a已连接村民"),
         "",
-        ChatColors.color("&bTool &9&o(Villager Utils)")
+        ChatColors.color("&b工具")
     );
 
     // NamespacedKey for PDC
@@ -69,14 +67,14 @@ public class TransportWand extends SlimefunItem {
 
                 // Check for permission
                 if (!Slimefun.getProtectionManager().hasPermission(p, p.getLocation(), Interaction.INTERACT_ENTITY)) {
-                    p.sendMessage(ChatColors.color("&cYou don't have permission!"));
+                    p.sendMessage(ChatColors.color("&c你没有权限!"));
                     v.shakeHead();
                     return;
                 }
 
                 // Check for villager tokens
                 if (!Utils.hasToken(p, inv)) {
-                    p.sendMessage(ChatColors.color("&cInsufficient Villager Tokens!"));
+                    p.sendMessage(ChatColors.color("&c村民令牌不足!"));
                     v.shakeHead();
                     return;
                 }
@@ -102,7 +100,7 @@ public class TransportWand extends SlimefunItem {
                         // Consume villager token
                         Utils.removeToken(p, inv);
                     } else {
-                        p.sendMessage(ChatColors.color("&cYou don't have enough inventory space!"));
+                        p.sendMessage(ChatColors.color("&c你的物品栏已满!"));
                     }
 
                     // Play sounds
@@ -119,5 +117,5 @@ public class TransportWand extends SlimefunItem {
     public void preRegister() {
         this.addItemHandler(getEntityInteractHandler());
     }
-    
+
 }

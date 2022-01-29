@@ -1,8 +1,9 @@
 package me.apeiros.villagerutil;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import io.github.mooy1.infinitylib.core.AbstractAddon;
+import net.guizhanss.guizhanlib.updater.GuizhanBuildsUpdater;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 public class VillagerUtil extends AbstractAddon {
 
@@ -17,7 +18,7 @@ public class VillagerUtil extends AbstractAddon {
 
     // Auto update things
     public VillagerUtil() {
-        super("Apeiros-46B", "VillagerUtil", "main", "options.auto-update");
+        super("ybw0014", "VillagerUtil-CN", "main", "options.auto-update");
     }
 
     @Override
@@ -27,6 +28,11 @@ public class VillagerUtil extends AbstractAddon {
 
         // Command number
         commandNumber = ThreadLocalRandom.current().nextInt(0, 1_000_000);
+
+        if (getConfig().getBoolean("options.auto-update") &&
+            getDescription().getVersion().startsWith("Build")) {
+            new GuizhanBuildsUpdater(this, getFile(), "ybw0014", "VillagerUtil-CN", "main", false).start();
+        }
 
         // Whether or not to consume tokens
         useTokens = this.getConfig().getBoolean("options.use-tokens");

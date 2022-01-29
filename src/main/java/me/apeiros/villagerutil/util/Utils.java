@@ -1,7 +1,9 @@
 package me.apeiros.villagerutil.util;
 
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.experimental.UtilityClass;
-
+import me.apeiros.villagerutil.Setup;
+import me.apeiros.villagerutil.VillagerUtil;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -13,14 +15,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
 
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-
-import me.apeiros.villagerutil.Setup;
-import me.apeiros.villagerutil.VillagerUtil;
-
 @UtilityClass
 public class Utils {
-    
+
     // Check if villager trades are locked
     public static boolean villagerTradesLocked(Villager v) {
         return v.getVillagerLevel() != 1 || v.getVillagerExperience() != 0;

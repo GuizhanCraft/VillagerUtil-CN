@@ -1,16 +1,12 @@
 package me.apeiros.villagerutil;
 
-import lombok.experimental.UtilityClass;
-
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
-
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import lombok.experimental.UtilityClass;
 import me.apeiros.villagerutil.commands.ResetVillagerCommand;
 import me.apeiros.villagerutil.items.TransportCharm;
 import me.apeiros.villagerutil.items.wands.CureWand;
@@ -18,6 +14,8 @@ import me.apeiros.villagerutil.items.wands.NitwitWand;
 import me.apeiros.villagerutil.items.wands.TradeWand;
 import me.apeiros.villagerutil.items.wands.TransportWand;
 import me.apeiros.villagerutil.util.Utils;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 @UtilityClass
 public class Setup {
@@ -27,62 +25,82 @@ public class Setup {
 
     // Item constants
     public static final SlimefunItemStack ESSENCE = new SlimefunItemStack(
-            "VU_ESSENCE", Material.GLOWSTONE_DUST, "&dVillager Essence",
-            "&7A rare, mysterious dust which is a key",
-            "&7component of Villager Magic",
-            "",
-            "&eIngredient &9&o(Villager Utils)");
+        "VU_ESSENCE",
+        Material.GLOWSTONE_DUST,
+        "&d村民精华",
+        "&7稀有且神秘的粉尘",
+        "&7是合成村民令牌的重要部分",
+        "",
+        "&e合成材料"
+    );
 
     public static final SlimefunItemStack TOKEN = new SlimefunItemStack(
-            "VU_TOKEN", Material.EMERALD, "&bVillager Token",
-            "&7A special item that is needed",
-            "&7to cast Villager Magic",
-            "",
-            "&aConsumable &9&o(Villager Utils)");
+        "VU_TOKEN",
+        Material.EMERALD,
+        "&b村民令牌",
+        "&7使用各种村民工具",
+        "&7都需要消耗该令牌",
+        "",
+        "&a消耗品"
+    );
 
     public static final SlimefunItemStack TRANSPORT_CHARM = new SlimefunItemStack(
-            "VU_TRANSPORT_CHARM", VILLAGER, "&a&lVillager Charm",
-            "&7A magical charm which will teleport",
-            "&7the associated villager to its location",
-            "&eRight Click &7to teleport the villager",
-            "",
-            "&7No villager linked",
-            "",
-            "&bTool &9&o(Villager Utils)");
+        "VU_TRANSPORT_CHARM",
+        VILLAGER,
+        "&a&l村民信标",
+        "&7一个魔法信标，可以将连接的村民",
+        "&7传动到当前位置",
+        "&e右键点击&7进行传送",
+        "",
+        "&7未连接村民",
+        "",
+        "&b工具"
+    );
 
     public static final SlimefunItemStack TRANSPORT_WAND = new SlimefunItemStack(
-            "VU_TRANSPORT_WAND", Material.BLAZE_ROD, "&cVillager Transport Wand",
-            "&eRight Click &7on a villager",
-            "&7to recieve a Villager Charm",
-            "&7linked to that villager",
-            "",
-            "&bTool &9&o(Villager Utils)");
+        "VU_TRANSPORT_WAND",
+        Material.BLAZE_ROD,
+        "&c村民传送棒",
+        "&e右键点击&7一名村民",
+        "&7获取一个与该村民连接的村民信标",
+        "",
+        "&b工具"
+    );
 
     public static final SlimefunItemStack TRADE_WAND = new SlimefunItemStack(
-            "VU_TRADE_WAND", Material.BLAZE_ROD, "&6Villager Trade Wand",
-            "&eRight Click &7on a villager",
-            "&7to cycle its trades",
-            "",
-            "&bTool &9&o(Villager Utils)");
+        "VU_TRADE_WAND",
+        Material.BLAZE_ROD,
+        "&6村民交易棒",
+        "&e右键点击&7一名村民",
+        "&7更换村民的交易",
+        "",
+        "&b工具"
+    );
 
     public static final SlimefunItemStack CURE_WAND = new SlimefunItemStack(
-            "VU_CURE_WAND", Material.BLAZE_ROD, "&aVillager Cure Wand",
-            "&eRight Click &7on a zombified villager",
-            "&7to cure it from its ailment",
-            "",
-            "&bTool &9&o(Villager Utils)");
+        "VU_CURE_WAND",
+        Material.BLAZE_ROD,
+        "&a村民治愈棒",
+        "&e右键点击&7一名僵尸村民",
+        "&7使其恢复成为村民",
+        "",
+        "&b工具"
+    );
 
     public static final SlimefunItemStack NITWIT_WAND = new SlimefunItemStack(
-            "VU_NITWIT_WAND", Material.BLAZE_ROD, "&5Villager De-nitwit-ifier",
-            "&eRight Click &7on a nitwit-type villager",
-            "&7to allow it to get a job",
-            "",
-            "&bTool &9&o(Villager Utils)");
+        "VU_NITWIT_WAND",
+        Material.BLAZE_ROD,
+        "&5村民去盲棒",
+        "&e右键点击&7一名傻子村民",
+        "&7使其成为正常村民",
+        "",
+        "&b工具"
+    );
 
     // Setup methods
     public static void setup(VillagerUtil p) {
         // Setup category and researches
-        ItemGroup ig = new ItemGroup(Utils.key("villager_util"), new CustomItemStack(Material.EMERALD_BLOCK, "&aVillager Utils"));
+        ItemGroup ig = new ItemGroup(Utils.key("villager_util"), new CustomItemStack(Material.EMERALD_BLOCK, "&a村民工具"));
         ig.register(p);
 
         // Setup /resetvillager command
