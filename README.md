@@ -6,7 +6,7 @@
 
 ## 下载
 
-**自动更新**: 汉化版构建#15及以后版本包含*自动更新*功能，默认开启。
+**自动更新**: 汉化版构建#1及以后版本包含*自动更新*功能，默认开启。
 
 点击这里下载 VillagerUtil: [下载 VillagerUtil](https://builds.guizhanss.net/ybw0014/VillagerUtil-CN/main)
 
