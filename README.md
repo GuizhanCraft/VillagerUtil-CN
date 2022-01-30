@@ -8,14 +8,14 @@
 
 **自动更新**: 汉化版构建#15及以后版本包含*自动更新*功能，默认开启。
 
-点击这里下载 VillagerUtil: [下载 VillagerUtil](https://builds.guizhanss.net/ybw0014/VillagerUtil-CN/master)
+点击这里下载 VillagerUtil: [下载 VillagerUtil](https://builds.guizhanss.net/ybw0014/VillagerUtil-CN/main)
 
 <p align="center">
   <a href="https://github.com/ybw0014/VillagerUtil-CN/actions/workflows/maven.yml">
     <img src="https://github.com/ybw0014/VillagerUtil-CN/actions/workflows/maven.yml/badge.svg" alt="Java CI"/>
   </a>
-  <a href="https://builds.guizhanss.net/ybw0014/VillagerUtil-CN/master">
-    <img src="https://builds.guizhanss.net/f/ybw0014/VillagerUtil-CN/master/badge.svg" alt="Build status"/>
+  <a href="https://builds.guizhanss.net/ybw0014/VillagerUtil-CN/main">
+    <img src="https://builds.guizhanss.net/f/ybw0014/VillagerUtil-CN/main/badge.svg" alt="Build status"/>
   </a>
 </p>
 
