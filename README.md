@@ -1,8 +1,6 @@
 # VillagerUtil - 村民工具
 
----
-
-一个小型Slimefun附属插件，可以让你更方便地处理村民相关地事情。
+一个小型Slimefun附属插件，可以让你更方便地处理村民相关的事情。
 
 需要 Minecraft 1.18 以及 [Slimefun](https://slimefun.guizhanss.wiki/Installing-Slimefun)。
 
