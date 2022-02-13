@@ -4,7 +4,7 @@ description: A small Slimefun4 addon that adds a few convenience features relate
 main: me.apeiros.villagerutil.VillagerUtil
 website: https://github.com/Apeiros-46B/VillagerUtil
 version: ${project.version}
-api-version: 1.18
+api-version: 1.17
 depend:
 - Slimefun
 commands:
