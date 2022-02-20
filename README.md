@@ -2,7 +2,7 @@
 
 一个小型Slimefun附属插件，可以让你更方便地处理村民相关的事情。
 
-需要 Minecraft 1.18 以及 [Slimefun](https://slimefun.guizhanss.wiki/Installing-Slimefun)。
+需要至少 Minecraft 1.17 以及 [Slimefun](https://slimefun.guizhanss.wiki/Installing-Slimefun)。
 
 ## 下载
 
